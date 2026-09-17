@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="../Screenshot_20260904_142806_Drive.jpg">
+  <title>Trouver un plan | Laroche Construction</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../hero-crop.css">
+</head>
+<body class="inner-page">
+  <header class="site-header" id="site-header">
+    <a class="brand" href="../index.html#home" aria-label="Accueil de Laroche Construction"><img src="../Screenshot_20260904_142806_Drive.jpg" alt="Logo Laroche Construction"><span>LAROCHE<br><b>CONSTRUCTION</b></span></a>
+    <nav class="main-nav inner-nav" aria-label="Navigation principale"><span class="primary-links"><a href="../index.html#home">Accueil</a><a href="services.html">Services</a><a href="process.html">Méthode</a><a href="realisations.html">Réalisations</a></span><span class="utility-links"><a class="active" href="plans.html">Trouver un plan</a><a href="contact.html">Contact</a></span></nav>
+    <a class="header-cta" href="project.html">Commencer un projet <span>↗</span></a>
+  </header>
+  <main class="inner-main">
+    <section class="plans-filter" aria-labelledby="plans-filter-title">
+      <div><p class="eyebrow">SÉLECTION RAPIDE</p><h2 id="plans-filter-title">Trouvez un plan adapté à votre projet.</h2></div>
+      <form id="plans-filter-form">
+        <div class="plans-filter-fields" id="plans-filter-fields">
+          <label><span>Type de plan</span><select name="type" id="plan-type"><option value="">Tous les types</option><option value="residential">Construction résidentielle</option><option value="commercial">Construction commerciale</option><option value="industrial">Construction industrielle</option><option value="civil">Génie civil</option></select></label>
+          <label><span>Tranche de prix</span><select name="priceRange" id="plan-price-range"><option value="">Tous les prix</option><option value="free">Gratuit</option><option value="0-5000">0 à 5 000 FCFA</option><option value="5000-plus">5 000 FCFA et plus</option></select></label>
+          <div id="plan-specific-fields"></div>
+        </div>
+        <button class="button button-gold" type="submit">Voir les plans <span>↗</span></button>
+      </form>
+      <p class="plans-filter-status" id="plans-filter-status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="plan-grid" id="plans-grid" aria-live="polite"></section>
+    <p class="plans-empty is-hidden" id="plans-empty">Aucun plan disponible.</p>
+    <nav class="plans-pagination" id="plans-pagination" aria-label="Pagination des plans"></nav>
+    <section class="plan-preview is-hidden" id="plan-preview" aria-label="Aperçu du plan">
+      <div class="plan-preview-backdrop"></div>
+      <div class="plan-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="plan-preview-title">
+        <button class="plan-preview-close" id="plan-preview-close" type="button" aria-label="Fermer">×</button>
+        <h2 id="plan-preview-title"></h2>
+        <iframe id="plan-preview-frame" title="Aperçu PDF du plan" src="about:blank"></iframe>
+      </div>
+    </section>
+    <section class="plan-order is-hidden" id="plan-order" aria-labelledby="plan-order-title">
+      <form id="plan-order-form" class="plan-order-card">
+        <button class="plan-order-close" id="plan-order-close" type="button" aria-label="Fermer">×</button>
+        <p class="eyebrow">VOTRE PLAN</p><h2 id="plan-order-title">Recevez votre plan par email.</h2>
+        <p>Renseignez vos coordonnées et vos exigences. Après confirmation du paiement, le plan PDF et le récapitulatif seront envoyés à votre adresse.</p>
+        <input type="hidden" name="planId"><input type="hidden" name="planName"><input type="hidden" name="pdfUrl">
+        <div class="admin-form-grid"><label>Nom complet<input name="name" autocomplete="name" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Téléphone<input name="phone" type="tel" autocomplete="tel" required></label><label>Surface souhaitée<input name="surface" required></label><label class="admin-wide">Options supplémentaires<textarea name="requirements" rows="4" placeholder="Chambres, douches, terrasse, piscine, budget, etc."></textarea></label></div>
+        <button class="button button-gold" type="submit"><span id="plan-payment-label">0 FCFA</span> <span>↗</span></button>
+        <p class="plans-order-status" role="status"></p>
+      </form>
+    </section>
+    <section class="inner-callout"><p class="eyebrow light">UN PLAN N'EST QUE LE DÉBUT</p><h2>Imaginez-le.<br><em>Nous vous aiderons à le bâtir.</em></h2><a class="button button-gold" href="project.html">Commencer un projet <span>↗</span></a></section>
+  </main>
+  <script>document.querySelector('.site-header').classList.add('scrolled');</script>
+  <script src="../js/site-navigation.js"></script>
+  <script src="../js/plans.js"></script>
+</body>
+</html>

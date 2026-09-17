@@ -1,0 +1,416 @@
+Etape 0, OK
+YOUTUBE_CHANNEL_ID=
+YOUTUBE_API_KEY=
+
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+
+GOOGLE_APPS_SCRIPT_URL=
+GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID=
+
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_DB_URL=
+SUPABASE_SECRET_KEY= 
+
+MONETBIL_SECRET_KEY=
+MONETBIL_SERVICE_KEY=
+
+monetbil;
+etape 1;
+Ajoutez cette line à la fin, avant la balise </body>:
+<script type="text/javascript" src="https://fr.monetbil.com/widget/v2/monetbil.min.js"></script>
+Copiez cette line pour le bouton de paiement:
+<form action="" method="get" data-monetbil="form"><button class="" type="submit">Pay by Mobile Money</button></form>
+il faut aussi: 
+URL de redirection: Paiement réussie   
+URL de redirection: Paiement échoué   
+URL de notification de paiement:  
+Méthode de notification de paiement:  
+
+
+pour l'envoie de email, je n'utilise pas smtp j'utilise 
+Pour l'envoi de vos e-mails, nous avons configuré ensemble Google Apps Script.
+C'est un outil officiel et gratuit de Google qui s'exécute directement sur les serveurs
+de votre compte Gmail larocheconstruction19@gmail.com.
+avec les clés 
+GOOGLE_APPS_SCRIPT_URL=
+GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID=
+
+fait l'etape 2
+Le fichier server.js est actuellement un backend de test minimal. Il faut encore ajouter les routes suivantes.
+Routes publiques
+GET /api/health
+GET /api/public/settings
+GET /api/public/stats
+GET /api/public/plans
+GET /api/public/news
+GET /api/public/news/:id
+GET /api/public/videos
+GET /api/public/social-links
+POST /api/newsletter/subscribe
+POST /api/project-leads
+POST /api/plan-orders
+
+Routes administrateur
+POST /api/admin/login
+GET  /api/admin/session
+POST /api/admin/logout
+
+GET    /api/admin/plans
+POST   /api/admin/plans
+PUT    /api/admin/plans/:id
+DELETE /api/admin/plans/:id
+
+GET    /api/admin/news
+POST   /api/admin/news
+PUT    /api/admin/news/:id
+DELETE /api/admin/news/:id
+
+GET  /api/admin/stats
+PUT  /api/admin/stats
+
+GET  /api/admin/videos
+GET  /api/admin/newsletter/subscribers
+POST /api/admin/newsletter/:id/unsubscribe
+
+GET  /api/admin/settings
+PUT  /api/admin/settings
+
+GET  /api/admin/orders
+GET  /api/admin/project-leads
+Toutes les routes /api/admin/* doivent :
+
+vérifier la session serveur ;
+vérifier que l’utilisateur appartient à public.admin_users ;
+ne jamais retourner les secrets ;
+valider les entrées ;
+limiter les tailles de fichiers ;
+journaliser les erreurs sans enregistrer les mots de passe ou PIN.
+
+Étape 3 — Corriger la connexion administrateur
+La connexion doit valider :
+
+email ;
+mot de passe Supabase Auth ;
+appartenance à public.admin_users ;
+PIN à 6 chiffres ;
+verrouillage temporaire après plusieurs échecs.
+Le navigateur ne doit jamais appeler directement private.verify_admin_pin. Seul le backend doit le faire.
+
+La page spéciale pourra être :https://larocheconstruction.com/admin
+Mais le nom secret de l’URL ne suffit pas comme sécurité. La vraie protection doit rester :
+
+Supabase Auth ;
+PIN ;
+session HttpOnly ;
+expiration de session ;
+limitation des tentatives .
+
+Étape 4 — Connecter les plans au dashboard
+Le dashboard doit permettre :
+
+créer un plan ;
+modifier un plan ;
+supprimer un plan ;
+masquer ou publier un plan ;
+modifier son prix ;
+mettre un prix de 0 FCFA ;
+choisir le type ;
+choisir les surfaces ;
+ajouter une description ;
+envoyer une image ;
+envoyer un PDF.
+Les fichiers doivent être envoyés dans le bucket privé :
+La table public.
+plans doit stocker uniquement les chemins de stockage, pas les fichiers eux-mêmes.
+
+Le PDF ne doit jamais être accessible par une URL publique permanente.
+
+Étape 5 — Livraison sécurisée des PDF
+Après paiement validé par Monetbil :
+
+le webhook Monetbil est reçu par le backend ;
+la signature ou les paramètres de sécurité sont vérifiés ;
+la transaction est vérifiée côté serveur ;
+le statut de plan_orders devient paid ;
+le backend génère une URL Supabase signée ;
+l’URL expire après une durée courte ;
+le PDF est envoyé au client par email ;
+delivery_status devient sent.
+Le navigateur ne doit jamais pouvoir envoyer :
+{
+  "status": "paid"
+}
+Le paiement ne sera considéré comme réussi que par le webhook serveur.
+
+Étape 6 — Configurer Monetbil
+Dans le dashboard Monetbil :
+
+créer ou sélectionner le service ;
+renseigner le montant et la devise XAF ;
+configurer l’URL de retour ;
+configurer l’URL webhook :
+
+configurer la clé de service ;
+configurer le secret ;
+tester un paiement en environnement test ;
+vérifier que le webhook arrive ;
+vérifier que la commande passe de pending à paid.
+Il faudra aussi gérer :
+
+paiement annulé ;
+paiement échoué ;
+paiement répété ;
+webhook reçu deux fois ;
+montant falsifié ;
+transaction inconnue.
+La table payment_events sert justement à empêcher le traitement deux fois du même événement.
+
+Étape 7 — Newsletter
+Les formulaires newsletter et les achats doivent appeler :
+
+Le backend doit :
+
+normaliser l’email ;
+vérifier son format ;
+éviter les doublons ;
+limiter les abus ;
+enregistrer la source :
+website;
+plan-order;
+project-quiz;
+contact.
+Le dashboard doit afficher les abonnés et permettre de les désinscrire.
+
+Étape 8 — Configurateur de projet
+À la fin du quiz :
+
+valider les coordonnées ;
+enregistrer le prospect dans project_leads ;
+inscrire son email à la newsletter ;
+envoyer les informations au promoteur via Telegram ;
+afficher l’estimation ;
+charger uniquement les plans compatibles ;
+masquer la section si aucun plan ne correspond.
+Telegram doit être appelé uniquement côté backend :
+
+Ces informations ne doivent pas être visibles dans project.js.
+
+Étape 9 — Actualités administrables
+Le dashboard doit permettre :
+
+créer une actualité ;
+ajouter une image ;
+ajouter une catégorie ;
+ajouter une date ;
+ajouter une localisation ;
+ajouter un résumé ;
+rédiger le contenu ;
+publier ;
+masquer ;
+modifier ;
+supprimer.
+La page d’accueil affiche :
+
+lorsqu’il n’y a aucune news publiée.
+
+Étape 10 — Statistiques administrables
+Le dashboard doit modifier :
+
+projets réalisés ;
+années d’expérience ;
+collaborateurs ;
+villes couvertes ;
+clients accompagnés.
+Les valeurs doivent être lues depuis : GET /api/public/stats
+et modifiées uniquement via : PUT /api/admin/stats
+
+Étape 11 — Réseaux sociaux
+Le dashboard doit enregistrer :
+
+Facebook ;
+Instagram ;
+LinkedIn ;
+TikTok ;
+YouTube ;
+X.
+Les footers et les icônes de la page Réalisations doivent utiliser les valeurs de Supabase, et non des liens codés en dur.
+
+Étape 12 — YouTube
+Le backend doit utiliser :
+
+Il doit :
+
+récupérer les dernières vidéos ;
+masquer les vidéos supprimées ;
+afficher jusqu’à 9 vidéos par page ;
+synchroniser les statistiques ;
+afficher les vues dans le dashboard ;
+ne pas permettre l’upload YouTube depuis le dashboard.
+
+Étape 13 — Tester localement
+Avant GitHub, lancer :cd "C:\Users\user\OneDrive\Desktop\Laroche Construction"
+node server.js
+Puis tester :
+http://localhost:3000/api/health
+http://localhost:3000/pages/plans.html
+http://localhost:3000/pages/project.html
+http://localhost:3000/pages/admin.html
+
+Tester ensuite :
+
+connexion admin correcte ;
+mauvais mot de passe ;
+mauvais PIN ;
+verrouillage après cinq erreurs ;
+ajout d’un plan ;
+modification d’un plan ;
+suppression d’un plan ;
+upload d’une image ;
+upload d’un PDF ;
+affichage du plan dans le catalogue ;
+formulaire newsletter ;
+prospect projet ;
+Telegram ;
+commande Monetbil en test ;
+webhook ;
+email PDF ;
+déconnexion ;
+expiration de session.
+
+Étape 14 — Créer le dépôt GitHub
+Le depot github a ete creer: https://github.com/kodidarmk-crypto/LarocheConstruction.git
+ensuite cacher les secrets dans .env et .gitignore et le fichier API dans .venv
+git init
+git add .
+git status
+git commit -m "Prepare Laroche Construction production application"
+git branch -M main
+git remote add origin URL_DU_REPO
+git push -u origin main
+
+mais avant le commit: git status
+
+Étape 15 — Créer le projet Vercel
+Dans Vercel :
+
+importer le dépôt GitHub ;
+sélectionner le framework adapté au backend Node ; Next.js
+configurer le build ;
+ajouter toutes les variables d’environnement ;
+YOUTUBE_CHANNEL_ID=
+YOUTUBE_API_KEY=
+
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+
+GOOGLE_APPS_SCRIPT_URL=
+GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID=
+
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_DB_URL=
+SUPABASE_SECRET_KEY= 
+
+MONETBIL_SECRET_KEY=
+MONETBIL_SERVICE_KEY=
+déployer en Preview ;
+tester l’URL Vercel ;
+ajouter les variables pour :
+Production ;
+Preview ;
+Development.
+Les valeurs secrètes doivent être ajoutées dans Vercel, jamais dans GitHub.
+
+Étape 16 — Adapter le backend à Vercel
+Le serveur local server.js écoute actuellement sur un port. Vercel utilise des fonctions serverless.
+Il faudra donc déplacer les routes vers une structure Vercel, par exemple :
+api/
+  health.js
+  public/
+    plans.js
+    news.js
+    stats.js
+    settings.js
+    videos.js
+  admin/
+    login.js
+    session.js
+    logout.js
+    plans.js
+    news.js
+    stats.js
+  newsletter/
+    subscribe.js
+  project-leads.js
+  plan-orders.js
+  monetbil/
+    webhook.js
+Le code partagé peut être placé dans :
+lib/
+  supabase.js
+  auth.js
+  validation.js
+  mail.js
+  telegram.js
+  monetbil.js
+  storage.js
+Le serveur local actuel est utile pour tester, 
+mais il ne doit pas être copié tel quel comme architecture finale Vercel sans adaptation.
+
+Étape 17 — Connecter le domaine
+Dans Vercel :
+
+ouvrir le projet ;
+aller dans Settings → Domains ;
+ajouter :
+larocheconstruction.com
+www.larocheconstruction.com
+Vercel donnera les enregistrements DNS nécessaires.
+Chez le registrar du domaine :
+
+ajouter l’enregistrement A demandé par Vercel pour le domaine racine ;
+ajouter le CNAME demandé pour www ;
+supprimer les anciens enregistrements contradictoires ;
+attendre la propagation DNS ;
+vérifier le certificat SSL.
+Ensuite tester :
+https://larocheconstruction.com
+https://www.larocheconstruction.com
+Vercel gère normalement HTTPS automatiquement après validation DNS.
+
+Étape 18 — Configurer les URLs de production
+Remplacer les URLs de test par :
+
+https://larocheconstruction.com/api/monetbil/webhook
+https://larocheconstruction.com/api/project-leads
+https://larocheconstruction.com/api/newsletter/subscribe
+Dans Monetbil, Telegram et Supabase, utiliser les URLs de production.
+
+Étape 19 — Lien administrateur
+Le lien final pourra être :https://larocheconstruction.com/admin
+Cette page devra :
+
+afficher le formulaire email + mot de passe + PIN ;
+rester inaccessible sans session ;
+ne pas apparaître dans la navigation publique ;
+avoir des headers de sécurité ;
+ne pas être indexée par les moteurs de recherche ;
+ne jamais considérer l’URL seule comme une protection.
+Ajouter notamment :
+<meta name="robots" content="noindex,nofollow,noarchive">
+Et côté serveur :
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: no-referrer
+Content-Security-Policy: ...
+
+
+Et ensuite, je pourrais commencer a tester le site, 
+Upload des news, 
+envoyer des news a toutes les email enregistrer dans la newsletter,
+Upload des plans de maisons et leurs prix
+acheter un plan de maison et recevoir le PDF par email
+upload des videos dans youtube studio et ouvrir ces videos dans le site
+aprés ça je pourrais donner le site au clients

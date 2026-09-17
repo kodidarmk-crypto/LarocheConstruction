@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="../Screenshot_20260904_142806_Drive.jpg">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Administration | Laroche Construction</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../hero-crop.css">
+</head>
+<body class="admin-page">
+  <section class="admin-login" id="admin-login" aria-labelledby="admin-login-title">
+    <div class="admin-login-card">
+      <a class="brand" href="../index.html" aria-label="Retour au site"><img src="../Screenshot_20260904_142806_Drive.jpg" alt="Logo Laroche Construction"><span>LAROCHE<br><b>CONSTRUCTION</b></span></a>
+      <p class="eyebrow">ESPACE PRIVÉ</p>
+      <h1 id="admin-login-title">Connexion administrateur.</h1>
+      <p>Entrez votre email, votre mot de passe et votre code PIN pour accéder au tableau de bord Laroche Construction.</p>
+      <form id="admin-login-form" novalidate>
+        <label for="admin-email">Email administrateur</label>
+        <input id="admin-email" name="email" type="email" autocomplete="username" required>
+        <label for="admin-password">Mot de passe</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <label for="admin-pin">Code PIN</label>
+        <input id="admin-pin" name="pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="one-time-code" required>
+        <button class="button button-gold" type="submit">Se connecter <span>↗</span></button>
+        <p class="admin-login-status" id="admin-login-status" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+  <header class="admin-header">
+    <a class="brand" href="../index.html" aria-label="Retour au site"><img src="../Screenshot_20260904_142806_Drive.jpg" alt="Logo Laroche Construction"><span>LAROCHE<br><b>CONSTRUCTION</b></span></a>
+    <div><span class="admin-badge">ADMINISTRATION</span><button class="admin-logout" id="admin-logout" type="button">Se déconnecter</button><button class="admin-menu" type="button" aria-label="Ouvrir le menu">☰</button></div>
+  </header>
+  <main class="admin-layout is-locked" id="admin-content">
+    <aside class="admin-sidebar">
+      <p class="admin-label">TABLEAU DE BORD</p>
+      <nav aria-label="Navigation administrateur">
+        <button class="admin-tab is-active" data-panel="overview">Vue d'ensemble</button>
+        <button class="admin-tab" data-panel="stats">Chiffres clés</button>
+        <button class="admin-tab" data-panel="plans">Plans & tarifs</button>
+        <button class="admin-tab" data-panel="quiz">Paramètres du filtre</button>
+        <button class="admin-tab" data-panel="news">Actualités</button>
+        <button class="admin-tab" data-panel="videos">Réalisations vidéo</button>
+        <button class="admin-tab" data-panel="integrations">Monetbil & Telegram</button>
+        <button class="admin-tab" data-panel="newsletter">Newsletter</button>
+        <button class="admin-tab" data-panel="settings">Coordonnées du site</button>
+      </nav>
+    </aside>
+    <section class="admin-content">
+      <div class="admin-panel is-active" id="panel-overview">
+        <p class="eyebrow">TABLEAU DE BORD</p><h1>Bienvenue dans votre espace de gestion.</h1><p class="admin-intro">Gérez les plans, les actualités, les paramètres du filtre et les intégrations de Laroche Construction.</p>
+        <div class="admin-stats"><article><strong data-stat="plans">—</strong><span>Plans publiés</span></article><article><strong data-stat="news">—</strong><span>Actualités publiées</span></article><article><strong data-stat="subscribers">—</strong><span>Abonnés newsletter</span></article><article><strong data-stat="payments">—</strong><span>Paiements confirmés</span></article></div>
+        <div class="admin-notice"><strong>Sécurité</strong><p>Les clés Monetbil, le token Telegram et les identifiants d’administration doivent être conservés côté serveur. Cette interface les transmet uniquement via HTTPS à l’API d’administration.</p></div>
+      </div>
+
+      <div class="admin-panel" id="panel-stats">
+        <p class="eyebrow">ACCUEIL</p><h2>Chiffres clés</h2>
+        <p class="admin-intro">Ces valeurs alimentent la section « Bâtir la confiance. Mesurer l’impact. » de la page d’accueil.</p>
+        <form class="admin-form" data-endpoint="/api/admin/stats">
+          <div class="admin-form-grid">
+            <label>Projets réalisés<input name="projects" type="number" min="0" required></label>
+            <label>Années d'expérience<input name="experience" type="number" min="0" required></label>
+            <label>Collaborateurs<input name="collaborators" type="number" min="0" required></label>
+            <label>Villes couvertes<input name="cities" type="number" min="0" required></label>
+            <label>Clients accompagnés<input name="clients" type="number" min="0" required></label>
+          </div>
+          <button class="button button-gold" type="submit">Enregistrer les chiffres</button>
+          <p class="admin-status" role="status"></p>
+        </form>
+      </div>
+
+      <div class="admin-panel" id="panel-plans">
+        <div class="admin-heading"><div><p class="eyebrow">CATALOGUE</p><h2>Plans & tarifs</h2></div><button class="button button-gold admin-add" type="button" data-form="plan-form">Ajouter un plan <span>+</span></button></div>
+        <form class="admin-form is-hidden" id="plan-form" enctype="multipart/form-data">
+          <h3>Nouveau plan</h3><div class="admin-form-grid"><label>Nom du plan<input name="name" required></label><label>Type<select name="type" required><option value="">Choisir</option><option value="residential">Construction résidentielle</option><option value="commercial">Construction commerciale</option><option value="industrial">Construction industrielle</option><option value="civil">Génie civil</option></select></label><label>Surface<select name="surface" required><option value="">Choisir</option><option value="under-100">Moins de 100 m²</option><option value="100-200">100 à 200 m²</option><option value="200-300">200 à 300 m²</option><option value="over-300">300 m² ou plus</option></select></label><label>Prix (FCFA)<input name="price" type="number" min="0" required></label><label class="admin-wide">Description<textarea name="description" rows="3" required></textarea></label><label>Image de couverture<input name="cover" type="file" accept="image/*"></label>          <label>Plan PDF<input name="pdf" type="file" accept="application/pdf"></label></div><div class="admin-form-actions"><button class="button button-gold" type="submit">Enregistrer le plan</button><button class="button button-outline dark-outline admin-cancel" type="button">Annuler</button></div><p class="admin-status" role="status"></p>
+        </form>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Plan</th><th>Type</th><th>Surface</th><th>Prix</th><th>Statut</th><th>Actions</th></tr></thead><tbody id="plans-table"><tr><td colspan="6">Chargement des plans…</td></tr></tbody></table></div>
+      </div>
+
+      <div class="admin-panel" id="panel-quiz"><p class="eyebrow">CONFIGURATION</p><h2>Paramètres du filtre</h2><p class="admin-intro">Les valeurs enregistrées ici servent au filtre de la page Trouver un plan et à l’association des plans.</p><form class="admin-form" data-endpoint="/api/admin/filter-settings"><div class="admin-form-grid"><label>Types de construction<textarea name="types" rows="4">Construction résidentielle
+Construction commerciale
+Construction industrielle
+Génie civil</textarea></label><label>Tranches de surface<textarea name="surfaces" rows="4">Moins de 100 m²
+100 à 200 m²
+200 à 300 m²
+300 m² ou plus</textarea></label><label class="admin-wide">Paramètres résidentiels<textarea name="residential" rows="4">Nombre de chambres;Nombre de douches / toilettes;Pièce principale;Piscine;Boukarou;Espace vert;Terrasse</textarea></label><label class="admin-wide">Paramètres commerciaux / industriels / génie civil<textarea name="other-services" rows="4">Type d’activité;Nombre de niveaux;Stationnement
+Type de bâtiment;Organisation du bâtiment;Contrainte principale
+Type d’ouvrage;Nature du terrain;Échelle du projet</textarea></label></div><button class="button button-gold" type="submit">Enregistrer les paramètres</button><p class="admin-status" role="status"></p></form></div>
+
+      <div class="admin-panel" id="panel-news"><div class="admin-heading"><div><p class="eyebrow">CONTENU</p><h2>Actualités & événements</h2></div><button class="button button-gold admin-add" type="button" data-form="news-form">Nouvelle actualité <span>+</span></button></div><form class="admin-form is-hidden" id="news-form" enctype="multipart/form-data"><h3>Publier une actualité</h3><div class="admin-form-grid"><label>Titre<input name="title" required></label><label>Catégorie<input name="category" required></label><label>Date<input name="date" type="date" required></label><label>Localisation<input name="location"></label><label class="admin-wide">Résumé<textarea name="summary" rows="3" required></textarea></label><label>Image<input name="image" type="file" accept="image/*"></label><label>Statut<select name="status"><option value="published">Publié</option><option value="hidden">Masqué</option></select></label></div><div class="admin-form-actions"><button class="button button-gold" type="submit">Enregistrer</button><button class="button button-outline dark-outline admin-cancel" type="button">Annuler</button></div><p class="admin-status" role="status"></p></form><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Titre</th><th>Catégorie</th><th>Date</th><th>Statut</th><th>Actions</th></tr></thead><tbody id="news-table"><tr><td colspan="5">Chargement des actualités…</td></tr></tbody></table></div></div>
+
+      <div class="admin-panel" id="panel-videos"><div class="admin-heading"><div><p class="eyebrow">RÉALISATIONS</p><h2>Vidéos YouTube</h2></div></div><p class="admin-intro">Les vidéos sont publiées depuis YouTube Studio et synchronisées automatiquement. Cette page affiche les statistiques disponibles sans permettre l'envoi d'une vidéo.</p><form class="admin-form is-hidden youtube-admin-upload" id="video-form" data-endpoint="/api/admin/videos"><div class="admin-form-grid"><label class="admin-wide">Lien YouTube<input name="url" type="url" placeholder="https://www.youtube.com/shorts/..." required></label><label>Titre<input name="title" required></label><label>Date de publication<input name="date" type="date" required></label><label class="admin-wide">Description<textarea name="description" rows="3"></textarea></label><label>Statut<select name="status"><option value="published">Publié</option><option value="hidden">Masqué</option></select></label></div><div class="admin-form-actions"><button class="button button-gold" type="submit">Publier la vidéo</button><button class="button button-outline dark-outline admin-cancel" type="button">Annuler</button></div><p class="admin-status" role="status"></p></form><div class="admin-table-wrap"><table class="admin-table"><thead><tr>      <th>Vidéo</th><th>Date</th><th>Vues</th><th>Statut</th><th>Source</th></tr></thead><tbody id="videos-table"><tr>      <td colspan="5">Chargement des vidéos…</td></tr></tbody></table></div></div>
+
+      <div class="admin-panel" id="panel-integrations"><p class="eyebrow">SERVICES</p><h2>Monetbil & Telegram</h2><p class="admin-intro">Ces valeurs sont protégées et ne sont jamais incluses dans les fichiers publics du site.</p><form class="admin-form" data-endpoint="/api/admin/integrations"><div class="admin-form-grid"><label>Clé de service Monetbil<input name="monetbilServiceKey" type="password" autocomplete="off"></label><label>URL de notification Monetbil<input name="monetbilNotifyUrl" placeholder="https://votre-domaine.com/api/monetbil/notify"></label><label>Token du bot Telegram<input name="telegramBotToken" type="password" autocomplete="off"></label><label>Chat-ID du promoteur<input name="telegramChatId" type="password" autocomplete="off"></label><label>URL publique du site<input name="siteUrl" type="url" placeholder="https://larocheconstruction.com"></label></div><button class="button button-gold" type="submit">Enregistrer les intégrations</button><p class="admin-status" role="status"></p></form></div>
+
+      <div class="admin-panel" id="panel-newsletter"><p class="eyebrow">ABONNÉS</p><h2>Newsletter</h2><p class="admin-intro">Les abonnés recevront un email avec un lien vers chaque actualité publiée.</p><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Email</th><th>Inscription</th><th>Statut</th><th>Actions</th></tr></thead><tbody id="subscribers-table"><tr><td colspan="4">Chargement des abonnés…</td></tr></tbody></table></div><form class="admin-form compact-form" data-endpoint="/api/admin/newsletter/test"><label>Envoyer un test à<input type="email" name="email" required></label><button class="button button-gold" type="submit">Envoyer un email test</button><p class="admin-status" role="status"></p></form></div>
+
+      <div class="admin-panel" id="panel-settings"><p class="eyebrow">IDENTITÉ</p><h2>Coordonnées du site</h2><form class="admin-form" data-endpoint="/api/admin/settings"><div class="admin-form-grid"><label>Adresse email<input name="email" type="email" value="hello@larocheconstruction.com"></label><label>Téléphone<input name="phone" value="+237 656 70 80 07"></label><label class="admin-wide">Adresse<textarea name="address" rows="2">Makepe, Douala, Cameroun</textarea></label><label>WhatsApp<input name="whatsapp" type="url" value="https://wa.me/237656708007"></label><label>Facebook<input name="facebook" type="url"></label><label>Instagram<input name="instagram" type="url"></label><label>LinkedIn<input name="linkedin" type="url"></label><label>TikTok<input name="tiktok" type="url"></label><label>YouTube<input name="youtube" type="url"></label><label>X<input name="x" type="url"></label><label class="admin-wide">Chaîne YouTube des réalisations<input name="youtubeChannelUrl" type="url" value="https://www.youtube.com/channel/UCV-Jtu_zpf4S87n9GyTrcDw"></label><label class="admin-wide">Identifiant de chaîne YouTube<input name="youtubeChannelId" value="UCV-Jtu_zpf4S87n9GyTrcDw" readonly></label><label class="admin-wide">Identifiants des vidéos<textarea name="youtubeVideoIds" rows="3" placeholder="Un identifiant YouTube par ligne"></textarea></label></div><button class="button button-gold" type="submit">Enregistrer les coordonnées et les vidéos</button><p class="admin-status" role="status"></p></form></div>
+    </section>
+  </main>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpeg" href="../Screenshot_20260904_142806_Drive.jpg">
+  <meta name="description" content="Configurez votre projet de construction et découvrez une estimation indicative Laroche Construction.">
+  <title>Commencer un projet | Laroche Construction</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../hero-crop.css">
+</head>
+<body class="inner-page project-page">
+  <header class="site-header site-header-static">
+    <a class="brand" href="../index.html#home" aria-label="Accueil de Laroche Construction"><img src="../Screenshot_20260904_142806_Drive.jpg" alt="Logo Laroche Construction"><span>LAROCHE<br><b>CONSTRUCTION</b></span></a>
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+    <nav class="main-nav inner-nav" id="main-nav" aria-label="Navigation principale"><span class="primary-links"><a href="../index.html#home">Accueil</a><a href="services.html">Services</a><a href="process.html">Méthode</a><a href="realisations.html">Réalisations</a></span><span class="utility-links"><a href="plans.html">Trouver un plan</a><a href="contact.html">Contact</a></span></nav>
+    <a class="header-cta active" href="project.html">Commencer un projet <span>↗</span></a>
+  </header>
+
+  <main class="inner-main project-main">
+    <section class="project-workspace">
+      <form class="project-quiz" id="project-quiz" novalidate>
+        <div class="quiz-progress"><span id="quiz-step-label">Étape 1 sur 7</span><div><i id="quiz-progress-bar"></i></div></div>
+        <fieldset class="quiz-step is-active" data-step="1"><legend>Quel type de projet souhaitez-vous réaliser ?</legend><p class="quiz-help">Choisissez le service qui correspond le mieux à votre besoin.</p><div class="quiz-options"><label><input type="radio" name="type" value="residential" required><span>Construction résidentielle<small>Maisons, villas et logements pensés pour vivre</small></span></label><label><input type="radio" name="type" value="commercial"><span>Construction commerciale<small>Bureaux, boutiques, restaurants et espaces professionnels</small></span></label><label><input type="radio" name="type" value="industrial"><span>Construction industrielle<small>Structures techniques, sites et bâtiments industriels</small></span></label><label><input type="radio" name="type" value="renovation"><span>Rénovation<small>Transformer et moderniser un bâtiment existant</small></span></label><label><input type="radio" name="type" value="civil"><span>Génie civil<small>Routes, fondations, réseaux et infrastructures</small></span></label><label><input type="radio" name="type" value="management"><span>Gestion de projet<small>Planifier, coordonner et piloter votre réalisation</small></span></label></div></fieldset>
+        <fieldset class="quiz-step" data-step="2"><legend>Quelle surface envisagez-vous ?</legend><p class="quiz-help">Une estimation de surface nous aide à approcher le budget.</p><div class="quiz-options"><label><input type="radio" name="surface" value="under-100" required><span>Moins de 100 m²<small>Format compact et fonctionnel</small></span></label><label><input type="radio" name="surface" value="100-200"><span>100 à 200 m²<small>Maison familiale confortable</small></span></label><label><input type="radio" name="surface" value="200-300"><span>200 à 300 m²<small>Grand volume résidentiel ou professionnel</small></span></label><label><input type="radio" name="surface" value="over-300"><span>300 m² ou plus<small>Projet de grande envergure</small></span></label></div></fieldset>
+        <fieldset class="quiz-step" data-step="3"><legend id="parameters-title">Paramétrez votre projet</legend><p class="quiz-help" id="parameters-help">Les questions s'adaptent au service que vous avez choisi.</p><div class="parameter-groups" id="parameter-groups"></div></fieldset>
+        <fieldset class="quiz-step" data-step="4"><legend>Quel niveau de finition recherchez-vous ?</legend><div class="quiz-options"><label><input type="radio" name="finish" value="essential" required><span>Essentiel<small>Un projet simple, solide et maîtrisé</small></span></label><label><input type="radio" name="finish" value="comfort"><span>Confort<small>Des équipements et finitions soignés</small></span></label><label><input type="radio" name="finish" value="premium"><span>Premium<small>Une réalisation sur mesure et haut de gamme</small></span></label></div></fieldset>
+        <fieldset class="quiz-step" data-step="5"><legend>Où se situe votre projet ?</legend><div class="quiz-options"><label><input type="radio" name="location" value="douala" required><span>Douala<small>Makepe et environs</small></span></label><label><input type="radio" name="location" value="other-cameroon"><span>Autre ville au Cameroun</span></label><label><input type="radio" name="location" value="other"><span>Hors du Cameroun</span></label></div></fieldset>
+        <fieldset class="quiz-step" data-step="6"><legend>Quel est votre horizon de réalisation ?</legend><div class="quiz-options compact"><label><input type="radio" name="timeline" value="soon" required><span>0 à 6 mois</span></label><label><input type="radio" name="timeline" value="year"><span>6 à 12 mois</span></label><label><input type="radio" name="timeline" value="later"><span>Plus d'un an</span></label></div></fieldset>
+        <fieldset class="quiz-step lead-step" data-step="7"><legend>Parlons de votre idée.</legend><p class="quiz-help">Laissez vos coordonnées et votre budget pour que Laroche Construction puisse étudier votre demande et vous contacter.</p><div class="lead-fields"><label><span>Nom</span><input type="text" name="lastName" autocomplete="family-name" required></label><label><span>Prénom</span><input type="text" name="firstName" autocomplete="given-name" required></label><label><span>Email</span><input type="email" name="email" autocomplete="email" required></label><label><span>Contact téléphonique</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="lead-budget"><span>Budget envisagé (FCFA)</span><input type="number" name="budget" id="project-budget" min="0" step="10000" required></label></div><p class="lead-status" id="lead-status" role="status" aria-live="polite"></p><div class="lead-confirmation is-hidden" id="lead-confirmation"><h3>Votre demande a été envoyée à Laroche Construction.</h3><p>Nous avons bien reçu votre requête. Notre équipe pourra vous recontacter avec une première compréhension de votre projet.</p><button class="button button-gold" type="button" id="choose-plan">Choisir un plan qui me convient <span>↗</span></button></div></fieldset>
+        <div class="quiz-actions"><button class="button button-outline dark-outline" type="button" id="quiz-prev">Retour</button><button class="button button-gold" type="button" id="quiz-next">Continuer <span>↗</span></button></div>
+      </form>
+      <aside class="project-summary" id="project-summary"><p class="eyebrow">VOTRE ESTIMATION</p><div class="summary-empty"><h2>Votre estimation apparaîtra ici.</h2><p>Répondez aux questions pour obtenir une première fourchette budgétaire et des plans adaptés.</p></div></aside>
+    </section>
+    <section class="plan-results is-hidden" id="plan-results"><div><p class="eyebrow">PLANS SUGGÉRÉS</p><h2>Des plans qui peuvent vous correspondre.</h2><p>La lecture de la fiche est libre. Le téléchargement du plan complet est envoyé par email après paiement.</p></div><div class="plan-result-grid" id="project-plan-results"></div></section>
+  </main>
+  <script src="../js/site-navigation.js"></script>
+  <script src="../js/project.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "laroche-construction-local",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js"
+  }
+}

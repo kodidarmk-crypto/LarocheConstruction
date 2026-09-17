@@ -1,0 +1,166 @@
+Avant de commencer l’intégration réelle, voici les éléments à clarifier.
+
+### 1. Hébergement et backend
+
+Le site est actuellement statique. Il faut choisir où héberger :
+
+- le backend ;
+- la base de données ;
+- les fichiers PDF ;
+- les images ;
+- les endpoints API.
+
+Exemples : Node.js, PHP/Laravel, Supabase, Firebase, VPS, Render, Railway ou autre hébergement.
+
+### 2. Accès administrateur
+
+À définir :
+
+- email ou nom d’utilisateur administrateur ;
+- mot de passe initial ;
+- possibilité de modifier le mot de passe ;
+- authentification à deux facteurs ou non ;
+- un seul administrateur ou plusieurs comptes.
+
+### 3. Monetbil
+
+Il faudra fournir ou configurer :
+
+- la clé de service Monetbil ;
+- le compte Monetbil validé ;
+- les opérateurs acceptés :
+  - MTN Mobile Money ;
+  - Orange Money ;
+  - Express Union ;
+- l’URL publique du site ;
+- l’URL de notification Monetbil ;
+- la devise : probablement XAF ;
+- le mode de paiement à utiliser : Widget v2.1 recommandé ou API v1.
+
+### 4. Paiement des plans
+
+Il faut définir :
+
+- le prix de chaque plan ;
+- si le prix est fixe ou modifiable depuis l’administration ;
+- si un plan peut être gratuit ;
+- si le paiement donne accès à un téléchargement ;
+- si le plan est envoyé uniquement par email ;
+- la durée de validité du lien de téléchargement ;
+- le nombre de téléchargements autorisés ;
+- la politique en cas de paiement échoué ou annulé.
+
+### 5. Envoi du PDF
+
+Il faut choisir :
+
+- envoi du PDF directement en pièce jointe ;
+- lien sécurisé temporaire ;
+- stockage des PDF sur le serveur ou sur un stockage externe ;
+- durée de validité du lien ;
+- service email à utiliser :
+  - SMTP ;
+  - Brevo ;
+  - Mailgun ;
+  - SendGrid ;
+  - Gmail professionnel ;
+  - autre.
+
+### 6. Telegram
+
+À fournir dans l’administration :
+
+- token du bot Telegram ;
+- `chat-ID` du promoteur ;
+- éventuellement plusieurs destinataires ;
+- format souhaité du message.
+
+Le message pourrait contenir :
+
+- nom et prénom ;
+- téléphone ;
+- email ;
+- type de projet ;
+- surface ;
+- paramètres choisis ;
+- budget ;
+- date de la demande.
+
+### 7. Base de données
+
+Il faudra définir les tables principales :
+
+- administrateurs ;
+- plans ;
+- paramètres des plans ;
+- paiements ;
+- clients ;
+- demandes de projet ;
+- actualités ;
+- abonnés newsletter ;
+- journaux d’envoi Telegram ;
+- journaux d’emails.
+
+### 8. Plans et filtre
+
+Pour chaque plan, l’administrateur devra pouvoir enregistrer :
+
+- nom ;
+- type :
+  - résidentiel ;
+  - commercial ;
+  - industriel ;
+  - génie civil ;
+- surface ;
+- chambres ;
+- douches / toilettes ;
+- pièce principale ;
+- accessoires ;
+- prix ;
+- description ;
+- image ;
+- PDF ;
+- statut publié ou masqué.
+
+Il faut aussi décider si un plan peut correspondre à plusieurs catégories et plusieurs surfaces.
+
+### 9. Newsletter
+
+À clarifier :
+
+- confirmation obligatoire par email ou inscription directe ;
+- possibilité de se désinscrire ;
+- nom de l’expéditeur ;
+- adresse email d’envoi ;
+- modèle d’email ;
+- envoi immédiat à chaque actualité ou validation manuelle par l’administrateur.
+
+### 10. Actualités
+
+Pour chaque actualité :
+
+- publication immédiate ou planifiée ;
+- statut brouillon, publié ou masqué ;
+- image obligatoire ou facultative ;
+- page détaillée individuelle ou simple carte ;
+- envoi automatique aux abonnés lors de la publication.
+
+### 11. Confidentialité et conformité
+
+Il faudra ajouter :
+
+- consentement pour la newsletter ;
+- politique de confidentialité ;
+- conservation des données clients ;
+- suppression d’une demande ;
+- droit de désinscription ;
+- protection contre le spam et les abus.
+
+Les éléments les plus urgents sont :
+
+1. l’hébergement backend ;
+2. la base de données ;
+3. les identifiants Monetbil ;
+4. le service d’envoi email ;
+5. le token Telegram et le `chat-ID` ;
+6. la règle de livraison du PDF après paiement.
