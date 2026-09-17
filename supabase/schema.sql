@@ -221,7 +221,7 @@ begin
     return false;
   end if;
 
-  valid_pin := crypt(requested_pin, credential.pin_hash) = credential.pin_hash;
+  valid_pin := extensions.crypt(requested_pin, credential.pin_hash) = credential.pin_hash;
 
   if valid_pin then
     update private.admin_pin_credentials
