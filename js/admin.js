@@ -31,7 +31,14 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(loginForm)))
       });
-      if (!response.ok) throw new Error(response.status === 401 ? 'Mot de passe incorrect.' : 'Connexion impossible.');
+      if (!response.ok) {
+        let message = response.status === 401 ? 'Mot de passe incorrect.' : `Connexion impossible (${response.status}).`;
+        try {
+          const payload = await response.json();
+          if (payload?.message) message = payload.message;
+        } catch {}
+        throw new Error(message);
+      }
       loginForm.reset();
       loginStatus.textContent = '';
       showAdmin();
