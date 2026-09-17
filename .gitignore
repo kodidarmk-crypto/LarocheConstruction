@@ -3,3 +3,4 @@
 !.env.example
 .venv/
 supabase/.temp/
+*.log
