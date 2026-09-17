@@ -3,11 +3,12 @@ const { api } = require('../lib/shared');
 
 module.exports = async function handler(req, res) {
   try {
-    const url = new URL(req.url || '/', `https://${req.headers.host || 'localhost'}`);
+    const rawUrl = req.url || '/';
+    const url = new URL(rawUrl, `https://${req.headers.host || 'localhost'}`);
+    const routePath = Array.isArray(req.query?.path) ? req.query.path.join('/') : req.query?.path;
     if (!url.pathname.startsWith('/api/')) {
-      res.statusCode = 404;
-      res.setHeader('Content-Type', 'application/json; charset=utf-8');
-      return res.end(JSON.stringify({ message: 'Route API introuvable.' }));
+      const normalizedPath = routePath ? `/api/${String(routePath).replace(/^\/+/, '')}` : `/api/${url.pathname.replace(/^\/+/, '')}`;
+      url.pathname = normalizedPath;
     }
     return await api(req, res, url);
   } catch (error) {
