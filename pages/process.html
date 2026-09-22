@@ -27,13 +27,7 @@
     <section class="inner-callout"><p class="eyebrow light">VOTRE PROCHAIN PROJET</p><h2>Construisons quelque chose<br><em>qui compte.</em></h2><a class="button button-gold" href="project.html">Commencer un projet <span>↗</span></a></section>
   </main>
   <footer class="site-footer"><div class="footer-top"><div class="footer-brand"><img src="../Screenshot_20260904_142806_Drive.jpg" alt="Logo Laroche Construction"><p>Construire aujourd’hui.<br>Façonner demain.</p></div><div class="footer-column"><p class="footer-label">Explorer</p><a href="../index.html#home">Accueil</a><a href="../index.html#services">Services</a><a href="process.html">Notre méthode</a><a href="realisations.html">Réalisations</a></div><div class="footer-column"><p class="footer-label">Commencer</p><a href="plans.html">Trouver un plan</a><a href="../index.html#book">Commencer un projet</a><a href="../index.html#contact">Contact</a><a href="https://wa.me/0000000000">WhatsApp ↗</a></div><div class="footer-column contact-column"><p class="footer-label">Nous contacter</p><p>Abidjan, Côte d'Ivoire</p><a href="tel:+2250000000000">+225 00 00 00 00 00</a><a href="mailto:hello@larocheconstruction.com">hello@larocheconstruction.com</a></div></div><div class="footer-bottom"><span>© Laroche Construction. Tous droits réservés.</span><span><a href="../index.html#contact">Politique de confidentialité</a><a href="../index.html#contact">Conditions générales</a></span><span>Instagram &nbsp; LinkedIn &nbsp; YouTube</span></div></footer>
-  <script>
-    const menuButton = document.querySelector('.menu-toggle');
-    const navigation = document.querySelector('.main-nav');
-    menuButton.addEventListener('click', () => { const open = navigation.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu'); });
-    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navigation.classList.remove('open')));
-    document.querySelector('.site-header').classList.add('scrolled');
-  </script>
+  <script>document.querySelector('.site-header').classList.add('scrolled');</script>
   <script src="../js/site-navigation.js"></script>
 </body>
 </html>

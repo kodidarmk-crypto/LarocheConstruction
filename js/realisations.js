@@ -45,7 +45,13 @@
     .then((data) => {
       const source = Array.isArray(data) ? data : data.videos;
       videos = (source || []).map((video) => ({ ...video, id: videoId(video) })).filter((video) => video.id).sort((a, b) => new Date(b.publishedAt || b.createdAt || b.date || 0) - new Date(a.publishedAt || a.createdAt || a.date || 0));
+      if (!videos.length) {
+        videos = [{ id: 'M7lc1UVf-VE', title: 'Vidéo de démonstration', publishedAt: new Date().toISOString() }];
+      }
       render();
     })
-    .catch(() => { videos = []; render(); });
+    .catch(() => {
+      videos = [{ id: 'M7lc1UVf-VE', title: 'Vidéo de démonstration', publishedAt: new Date().toISOString() }];
+      render();
+    });
 })();

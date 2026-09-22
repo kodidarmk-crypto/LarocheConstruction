@@ -30,6 +30,10 @@ const socialIcons = {
 const socialLinks = () => Object.keys(socialDefaults).map((network) => `<a href="${socialSettings[network]}" target="_blank" rel="noopener noreferrer" aria-label="${socialLabels[network]}" title="${socialLabels[network]}"><svg viewBox="0 0 24 24" aria-hidden="true">${socialIcons[network]}</svg></a>`).join('');
 const socialTextLinks = () => Object.keys(socialDefaults).map((network) => `<a href="${socialSettings[network]}" target="_blank" rel="noopener noreferrer">${socialLabels[network]}</a>`).join(' ');
 
+document.querySelectorAll('.brand').forEach((brand) => {
+  brand.href = `${siteBase}index.html#home`;
+});
+
 document.querySelectorAll('.service-detail-card').forEach((card) => {
   if (card.querySelector('.service-start')) return;
   const action = document.createElement('a');
