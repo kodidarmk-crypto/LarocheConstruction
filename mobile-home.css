@@ -1,0 +1,35 @@
+@media (max-width: 560px) {
+  .hero-shade {
+    background: transparent;
+  }
+
+  .hero-content .eyebrow,
+  .hero-content .hero-copy,
+  .hero-bottom {
+    display: none;
+  }
+
+  .hero-content {
+    left: 7vw;
+    right: 7vw;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(42px, 12vw, 62px);
+    margin-bottom: 30px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .hero-actions .button {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
