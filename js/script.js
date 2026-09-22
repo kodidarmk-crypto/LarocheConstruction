@@ -1,7 +1,5 @@
 const dashboardConfig = { stats: [{ value: 0, suffix: '+', label: 'Projets réalisés' }, { value: 0, suffix: '+', label: "Années d'expérience" }, { value: 0, suffix: '+', label: 'Collaborateurs' }, { value: 0, suffix: '+', label: 'Villes couvertes' }, { value: 0, suffix: '+', label: 'Clients accompagnés' }] };
 const header = document.querySelector('#site-header');
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
 const statsContainer = document.querySelector('#stats-grid');
 document.querySelectorAll('.nav-book, .header-cta, .hero-actions .button-gold, .footer-column a[href="#book"]').forEach(link => { link.childNodes[0].textContent = 'Commencer un projet '; });
 const residentialImage = document.querySelector('.service-card img[alt="Projet de construction résidentielle"]');
@@ -20,8 +18,6 @@ fetch('/api/public/stats').then(response => {
 }).catch(() => {});
 
 window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
-menuToggle.addEventListener('click', () => { const open = mainNav.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(open)); menuToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu'); });
-mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mainNav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
 
 const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } }), { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
