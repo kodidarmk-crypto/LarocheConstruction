@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="../image/Screenshot_20260904_142806_Drive.jpg"
+    />
+    <title>Trouver un plan | Laroche Construction</title>
+    <link rel="stylesheet" href="../Style/style.css" />
+  </head>
+  <body class="inner-page">
+    <header class="site-header" id="site-header">
+      <a
+        class="brand"
+        href="../index.html#home"
+        aria-label="Accueil de Laroche Construction"
+      >
+        <img
+          src="../image/Screenshot_20260904_142806_Drive.jpg"
+          alt="Logo Laroche Construction"
+        />
+        <span>LAROCHE<br /><b>CONSTRUCTION</b></span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav inner-nav" aria-label="Navigation principale">
+        <span class="primary-links">
+          <a href="../index.html#home">Accueil</a>
+          <a href="services.html">Services</a>
+          <a href="process.html">Méthode</a>
+          <a href="realisations.html">Réalisations</a>
+          <span class="utility-links"></span>
+          <a class="active" href="plans.html">Trouver un plan</a>
+          <a href="contact.html">Contact</a>
+        </span>
+      </nav>
+      <a class="header-cta" href="project.html"
+        >Commencer un projet <span>↗</span></a
+      >
+    </header>
+    <main class="inner-main">
+      <section class="plans-filter" aria-labelledby="plans-filter-title">
+        <div>
+          <p class="eyebrow">SÉLECTION RAPIDE</p>
+          <h2 id="plans-filter-title">
+            Trouvez un plan adapté à votre projet.
+          </h2>
+        </div>
+        <form id="plans-filter-form">
+          <div class="plans-filter-fields" id="plans-filter-fields">
+            <label
+              ><span>Type de plan</span>
+              <select name="type" id="plan-type">
+                <option value="">Tous les types</option>
+                <option value="residential">Construction résidentielle</option>
+                <option value="commercial">Construction commerciale</option>
+                <option value="industrial">Construction industrielle</option>
+                <option value="civil">Génie civil</option>
+              </select>
+            </label>
+            <label
+              ><span>Tranche de prix</span>
+              <select name="priceRange" id="plan-price-range">
+                <option value="">Tous les prix</option>
+                <option value="free">Gratuit</option>
+                <option value="0-4990">0 à 4 990 FCFA</option>
+                <option value="4990-9990">4 990 à 9 990 FCFA</option>
+                <option value="9990-plus">9 990 FCFA et plus</option>
+              </select>
+            </label>
+            <div
+              id="plan-specific-fields"
+              class="plan-feature-filters"
+              hidden
+            ></div>
+          </div>
+          <div class="plans-filter-actions">
+            <button class="button button-gold" type="submit">
+              Voir les plans <span>↗</span>
+            </button>
+          </div>
+        </form>
+        <p
+          class="plans-filter-status"
+          id="plans-filter-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </section>
+      <p
+        id="payment-return-status"
+        class="plans-filter-status is-hidden"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <section class="plan-grid" id="plans-grid" aria-live="polite"></section>
+      <p class="plans-empty is-hidden" id="plans-empty">
+        Aucun plan ne correspond encore à ces critères.
+      </p>
+      <nav
+        class="plans-pagination"
+        id="plans-pagination"
+        aria-label="Pagination des plans"
+      ></nav>
+
+      <!-- Plan PDF Preview Modal -->
+      <section
+        class="plan-preview is-hidden"
+        id="plan-preview"
+        aria-label="Aperçu du plan"
+      >
+        <div class="plan-preview-backdrop"></div>
+        <div
+          class="plan-preview-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="plan-preview-title"
+        >
+          <button
+            class="plan-preview-close"
+            id="plan-preview-close"
+            type="button"
+            aria-label="Fermer"
+          >
+            ×
+          </button>
+          <h2 id="plan-preview-title"></h2>
+          <iframe
+            id="plan-preview-frame"
+            title="Aperçu PDF du plan"
+            src="about:blank"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- Plan Order / Monetbil Checkout Modal -->
+      <section
+        class="plan-order is-hidden"
+        id="plan-order"
+        aria-labelledby="plan-order-title"
+      >
+        <form id="plan-order-form" class="plan-order-card">
+          <button
+            class="plan-order-close"
+            id="plan-order-close"
+            type="button"
+            aria-label="Fermer"
+          >
+            ×
+          </button>
+          <p class="eyebrow">ACQUISITION DU PLAN</p>
+          <h2 id="plan-order-title">Commander ce plan</h2>
+          <p id="plan-order-desc">
+            Renseignez vos coordonnées pour finaliser l'achat sécurisé par
+            Mobile Money / Carte via Monetbil.
+          </p>
+          <input type="hidden" name="planId" id="order-plan-id" />
+          <input type="hidden" name="planName" id="order-plan-name" />
+          <input type="hidden" name="price" id="order-plan-price" />
+          <div class="admin-form-grid checkout-fields">
+            <label
+              >Nom
+              <input
+                name="last_name"
+                id="order-last-name"
+                autocomplete="family-name"
+                placeholder="Votre nom"
+                required
+            /></label>
+            <label
+              >Prénom
+              <input
+                name="first_name"
+                id="order-first-name"
+                autocomplete="given-name"
+                placeholder="Votre prénom"
+                required
+            /></label>
+            <label
+              >Email
+              <input
+                name="email"
+                id="order-email"
+                type="email"
+                autocomplete="email"
+                placeholder="nom@exemple.com"
+                required
+            /></label>
+            <label
+              >Téléphone / WhatsApp
+              <input
+                name="phone"
+                id="order-phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="6XXXXXXXX"
+                required
+            /></label>
+          </div>
+          <label class="lead-consent checkout-consent">
+            <input
+              type="checkbox"
+              name="newsletter_consent"
+              id="plan-newsletter-consent"
+            />
+            <span
+              >Je souhaite recevoir les actualités et offres de Laroche
+              Construction par email. Je peux me désinscrire à tout
+              moment.</span
+            >
+          </label>
+          <div class="checkout-submit">
+            <button
+              class="button button-gold"
+              type="submit"
+              id="plan-submit-btn"
+            >
+              Acheter (<span id="plan-payment-label">0 FCFA</span>)
+              <span>↗</span>
+            </button>
+          </div>
+          <p class="plans-order-status" role="status"></p>
+          <p id="plan-newsletter-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="inner-callout">
+        <p class="eyebrow light">UN PLAN N'EST QUE LE DÉBUT</p>
+        <h2>Imaginez-le.<br /><em>Nous vous aiderons à le bâtir.</em></h2>
+        <a class="button button-gold" href="project.html"
+          >Commencer un projet <span>↗</span></a
+        >
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img
+            src="../image/Screenshot_20260904_142806_Drive.jpg"
+            alt="Logo Laroche Construction"
+          />
+          <p>Construire aujourd'hui.<br />Façonner demain.</p>
+        </div>
+        <div class="footer-column">
+          <p class="footer-label">Explorer</p>
+          <a href="../index.html#home">Accueil</a
+          ><a href="services.html">Services</a><a href="process.html">Méthode</a
+          ><a href="realisations.html">Réalisations</a>
+        </div>
+        <div class="footer-column">
+          <p class="footer-label">Commencer</p>
+          <a href="plans.html">Trouver un plan</a
+          ><a href="project.html">Commencer un projet</a
+          ><a href="contact.html">Contact</a
+          ><a href="https://wa.me/237656708007">WhatsApp ↗</a>
+        </div>
+        <div class="footer-column contact-column">
+          <p class="footer-label">Nous contacter</p>
+          <p>Makepe, Douala, Cameroun</p>
+          <a href="tel:+237656708007">+237 656 70 80 07</a
+          ><a href="mailto:larocheconstruction19@gmail.com"
+            >larocheconstruction19@gmail.com</a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>©2026 Laroche Construction. Tous droits réservés.</span
+        ><span
+          ><a href="politique-confidentialite.html"
+            >Politique de confidentialité</a
+          ><a href="conditions-generales.html">Conditions générales</a
+          ><a href="cookies.html">Cookies</a></span
+        ><span>Instagram &nbsp; LinkedIn &nbsp; YouTube &nbsp; X</span>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelector(".site-header").classList.add("scrolled");
+    </script>
+    <script src="../JS/site-navigation.js"></script>
+    <script src="../JS/plans.js"></script>
+  </body>
+</html>

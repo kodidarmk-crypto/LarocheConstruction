@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="referrer" content="same-origin" />
+    <title>Administration | Laroche Construction</title>
+    <link rel="stylesheet" href="../Style/style.css" />
+  </head>
+  <body class="admin-page">
+    <section
+      class="admin-login"
+      id="admin-login"
+      aria-labelledby="admin-login-title"
+    >
+      <div class="admin-login-card">
+        <a class="brand" href="../index.html"
+          ><img
+            src="../image/Screenshot_20260904_142806_Drive.jpg"
+            alt="Laroche Construction"
+          /><span>LAROCHE<br /><b>CONSTRUCTION</b></span></a
+        >
+        <p class="eyebrow">ESPACE PRIVÉ</p>
+        <h1 id="admin-login-title">Connexion administrateur.</h1>
+        <p>Compte Supabase autorisé, mot de passe et PIN à six chiffres.</p>
+        <form id="admin-login-form" novalidate>
+          <label for="admin-email">Email administrateur</label
+          ><input
+            id="admin-email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            required
+          />
+          <label for="admin-password">Mot de passe</label
+          ><input
+            id="admin-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <label for="admin-pin">Code PIN</label
+          ><input
+            id="admin-pin"
+            name="pin"
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            minlength="6"
+            maxlength="6"
+            autocomplete="one-time-code"
+            required
+          />
+          <button class="button button-gold" type="submit">
+            Se connecter <span>↗</span>
+          </button>
+          <p
+            class="admin-login-status"
+            id="admin-login-status"
+            role="alert"
+            aria-live="polite"
+          ></p>
+        </form>
+      </div>
+    </section>
+    <header class="admin-header">
+      <a class="brand" href="../index.html"
+        ><img
+          src="../image/Screenshot_20260904_142806_Drive.jpg"
+          alt="Laroche Construction"
+        /><span>LAROCHE<br /><b>CONSTRUCTION</b></span></a
+      >
+      <div>
+        <span class="admin-badge">ADMINISTRATION</span
+        ><button class="admin-logout" id="admin-logout" type="button">
+          Se déconnecter</button
+        ><button class="admin-menu" type="button" aria-label="Ouvrir le menu">
+          ☰
+        </button>
+      </div>
+    </header>
+    <main class="admin-layout is-locked" id="admin-content">
+      <aside class="admin-sidebar">
+        <p class="admin-label">TABLEAU DE BORD</p>
+        <nav aria-label="Navigation administrateur">
+          <button
+            class="admin-tab is-active"
+            data-panel="overview"
+            type="button"
+          >
+            Vue d’ensemble</button
+          ><button class="admin-tab" data-panel="analytics" type="button">
+            Trafic & ventes</button
+          ><button class="admin-tab" data-panel="site-stats" type="button">
+            Chiffres du site</button
+          ><button class="admin-tab" data-panel="plans" type="button">
+            Plans & tarifs</button
+          ><button class="admin-tab" data-panel="news" type="button">
+            Actualités</button
+          ><button class="admin-tab" data-panel="videos" type="button">
+            Vidéos YouTube</button
+          ><button class="admin-tab" data-panel="orders" type="button">
+            Commandes</button
+          ><button class="admin-tab" data-panel="newsletter" type="button">
+            Newsletter</button
+          ><button class="admin-tab" data-panel="settings" type="button">
+            Coordonnées & réseaux</button
+          ><button class="admin-tab" data-panel="integrations" type="button">
+            Configuration technique
+          </button>
+        </nav>
+      </aside>
+      <section class="admin-content">
+        <div class="admin-panel is-active" id="panel-overview">
+          <p class="eyebrow">TABLEAU DE BORD</p>
+          <h1>Vue d’ensemble.</h1>
+          <p class="admin-intro">
+            Fréquentation anonyme; achats et envois selon les données
+            enregistrées dans Supabase.
+          </p>
+          <div class="admin-stats">
+            <article>
+              <strong data-stat="visitors-day">—</strong
+              ><span>Visiteurs aujourd’hui</span>
+            </article>
+            <article>
+              <strong data-stat="visitors-month">—</strong
+              ><span>Visiteurs ce mois</span>
+            </article>
+            <article>
+              <strong data-stat="paid-orders">—</strong><span>Plans payés</span>
+            </article>
+            <article>
+              <strong data-stat="project-requests">—</strong
+              ><span>Devis transmis</span>
+            </article>
+            <article>
+              <strong data-stat="news">—</strong
+              ><span>Actualités publiées</span>
+            </article>
+            <article>
+              <strong data-stat="subscribers">—</strong
+              ><span>Abonnés actifs</span>
+            </article>
+          </div>
+          <div class="admin-notice">
+            <strong>Version ordinateur</strong>
+            <p>
+              Ce panneau web est protégé et convient au déploiement Vercel. Un
+              exécutable Visual Basic pour Windows est un livrable séparé et ne
+              doit jamais contenir de clés serveur.
+            </p>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-analytics">
+          <p class="eyebrow">FRÉQUENTATION</p>
+          <h2>Trafic & ventes</h2>
+          <div class="admin-stats admin-extra-stats">
+            <article>
+              <strong data-stat="visitors-day">—</strong
+              ><span>Visiteurs aujourd’hui</span>
+            </article>
+            <article>
+              <strong data-stat="visitors-week">—</strong><span>7 jours</span>
+            </article>
+            <article>
+              <strong data-stat="visitors-month">—</strong><span>30 jours</span>
+            </article>
+            <article>
+              <strong data-stat="visitors-year">—</strong><span>365 jours</span>
+            </article>
+            <article>
+              <strong data-stat="paid-orders">—</strong
+              ><span>Achats payés</span>
+            </article>
+            <article>
+              <strong data-stat="project-requests">—</strong
+              ><span>Devis transmis</span>
+            </article>
+          </div>
+          <div class="admin-table-wrap">
+            <h3>Plans les plus consultés (12 mois)</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Type</th>
+                  <th>Vues</th>
+                </tr>
+              </thead>
+              <tbody id="analytics-views">
+                <tr>
+                  <td colspan="3">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="admin-table-wrap">
+            <h3>Achats par catégorie (12 mois)</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Catégorie</th>
+                  <th>Achats</th>
+                  <th>Montant FCFA</th>
+                </tr>
+              </thead>
+              <tbody id="analytics-purchases">
+                <tr>
+                  <td colspan="3">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-site-stats">
+          <p class="eyebrow">PAGE D’ACCUEIL</p>
+          <h2>Chiffres clés du site</h2>
+          <p class="admin-intro">
+            Ces chiffres de présentation sont distincts des mesures réelles de
+            fréquentation et des achats.
+          </p>
+          <form class="admin-form" id="stats-form">
+            <div class="admin-form-grid">
+              <label
+                >Projets réalisés<input
+                  name="projects"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required /></label
+              ><label
+                >Années d’expérience<input
+                  name="experience"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required /></label
+              ><label
+                >Collaborateurs<input
+                  name="collaborators"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required /></label
+              ><label
+                >Villes couvertes<input
+                  name="cities"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required /></label
+              ><label
+                >Clients accompagnés<input
+                  name="clients"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required
+              /></label>
+            </div>
+            <button class="button button-gold" type="submit">
+              Enregistrer les chiffres
+            </button>
+            <p class="admin-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="admin-panel" id="panel-plans">
+          <div class="admin-heading">
+            <div>
+              <p class="eyebrow">CATALOGUE</p>
+              <h2>Plans & tarifs</h2>
+            </div>
+            <button
+              class="button button-gold admin-add"
+              type="button"
+              data-form="plan-form"
+            >
+              Ajouter un plan <span>+</span>
+            </button>
+          </div>
+          <form
+            class="admin-form is-hidden"
+            id="plan-form"
+            enctype="multipart/form-data"
+          >
+            <h3>Nouveau plan</h3>
+            <div class="admin-form-grid">
+              <label>Nom<input name="name" maxlength="160" required /></label
+              ><label
+                >Type<select name="type" required>
+                  <option value="">Choisir</option>
+                  <option value="residential">Résidentiel</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="industrial">Industriel</option>
+                  <option value="civil">Génie civil</option>
+                </select></label
+              >
+              <label
+                >Surface<select name="surface" required>
+                  <option value="">Choisir</option>
+                  <option value="under-100">Moins de 100 m²</option>
+                  <option value="100-200">100 à 200 m²</option>
+                  <option value="200-300">200 à 300 m²</option>
+                  <option value="over-300">300 m² ou plus</option>
+                </select></label
+              ><label
+                >Prix (FCFA)<input
+                  name="price"
+                  type="number"
+                  min="0"
+                  step="1"
+                  required
+              /></label>
+              <label class="admin-wide"
+                >Description<textarea
+                  name="description"
+                  rows="3"
+                  maxlength="4000"
+                  required
+                ></textarea>
+              </label>
+              <label class="admin-wide"
+                >Caractéristiques (une clé=valeur par ligne)<textarea
+                  name="characteristics"
+                  rows="5"
+                  placeholder="bedrooms=3&#10;bathrooms=3&#10;levels=two&#10;parking=garage"
+                ></textarea
+                ><small
+                  >Clés réutilisables par les filtres de la page Plans.</small
+                ></label
+              >
+              <label
+                >Couverture (JPG/PNG/WebP, 5 Mo max)<input
+                  name="cover"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp" /></label
+              ><label
+                >PDF privé (20 Mo max)<input
+                  name="pdf"
+                  type="file"
+                  accept="application/pdf" /></label
+              ><label
+                >Statut<select name="status">
+                  <option value="published">Publié</option>
+                  <option value="hidden">Masqué</option>
+                </select></label
+              >
+            </div>
+            <div class="admin-form-actions">
+              <button class="button button-gold" type="submit">
+                Enregistrer le plan</button
+              ><button
+                class="button button-outline dark-outline admin-cancel"
+                type="button"
+              >
+                Annuler
+              </button>
+            </div>
+            <p class="admin-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Type</th>
+                  <th>Surface</th>
+                  <th>Prix</th>
+                  <th>Statut</th>
+                  <th>PDF</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="plans-table">
+                <tr>
+                  <td colspan="7">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-news">
+          <div class="admin-heading">
+            <div>
+              <p class="eyebrow">CONTENU</p>
+              <h2>Actualités & événements</h2>
+            </div>
+            <button
+              class="button button-gold admin-add"
+              type="button"
+              data-form="news-form"
+            >
+              Nouvelle actualité <span>+</span>
+            </button>
+          </div>
+          <form
+            class="admin-form is-hidden"
+            id="news-form"
+            enctype="multipart/form-data"
+          >
+            <h3>Publier une actualité</h3>
+            <div class="admin-form-grid">
+              <label>Titre<input name="title" maxlength="220" required /></label
+              ><label
+                >Catégorie<input
+                  name="category"
+                  maxlength="80"
+                  value="Actualité"
+                  required /></label
+              ><label
+                >Date<input name="published_on" type="date" required /></label
+              ><label
+                >Localisation<input name="location" maxlength="180" /></label
+              ><label class="admin-wide"
+                >Résumé / sous-titre<textarea
+                  name="summary"
+                  rows="3"
+                  maxlength="4000"
+                  required
+                ></textarea></label
+              ><label class="admin-wide"
+                >Description / contexte<textarea
+                  name="content"
+                  rows="7"
+                ></textarea></label
+              ><label
+                >Image (JPG/PNG/WebP)<input
+                  name="image"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp" /></label
+              ><label
+                >Statut<select name="status">
+                  <option value="published">Publié</option>
+                  <option value="hidden">Masqué</option>
+                </select></label
+              >
+            </div>
+            <div class="admin-form-actions">
+              <button class="button button-gold" type="submit">
+                Enregistrer</button
+              ><button
+                class="button button-outline dark-outline admin-cancel"
+                type="button"
+              >
+                Annuler
+              </button>
+            </div>
+            <p class="admin-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Titre</th>
+                  <th>Catégorie</th>
+                  <th>Date</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="news-table">
+                <tr>
+                  <td colspan="5">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-videos">
+          <p class="eyebrow">RÉALISATIONS</p>
+          <h2>Vidéos YouTube</h2>
+          <p class="admin-intro">
+            Publiez les vidéos dans YouTube Studio. La galerie suit la playlist
+            de la chaîne et se rafraîchit environ toutes les cinq minutes.
+          </p>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Vidéo</th>
+                  <th>Publication</th>
+                  <th>Vues</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody id="videos-table">
+                <tr>
+                  <td colspan="4">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-orders">
+          <p class="eyebrow">ACHATS</p>
+          <h2>Commandes & envois</h2>
+          <p class="admin-intro">
+            Les PDF restent privés. La relance est permise uniquement après
+            confirmation du paiement.
+          </p>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Référence</th>
+                  <th>Plan</th>
+                  <th>Client</th>
+                  <th>Montant</th>
+                  <th>Paiement</th>
+                  <th>Email PDF</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table">
+                <tr>
+                  <td colspan="7">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-newsletter">
+          <p class="eyebrow">ABONNÉS</p>
+          <h2>Newsletter</h2>
+          <p class="admin-intro">
+            Les adresses sont conservées dans Supabase après consentement
+            explicite. Aucun envoi de campagne automatique n’est activé.
+          </p>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Inscription</th>
+                  <th>Statut</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="subscribers-table">
+                <tr>
+                  <td colspan="4">Chargement…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-settings">
+          <p class="eyebrow">IDENTITÉ</p>
+          <h2>Coordonnées & réseaux</h2>
+          <form class="admin-form" id="settings-form">
+            <div class="admin-form-grid">
+              <label
+                >Email<input
+                  name="email"
+                  type="email"
+                  value="larocheconstruction19@gmail.com" /></label
+              ><label
+                >Téléphone<input
+                  name="phone"
+                  value="+237 656 70 80 07" /></label
+              ><label class="admin-wide"
+                >Adresse<textarea name="address" rows="2">
+Makepe, Douala, Cameroun</textarea></label
+              ><label
+                >WhatsApp<input
+                  name="whatsapp"
+                  type="url"
+                  value="https://wa.me/237656708007"
+              /></label>
+              <label
+                >Facebook<input
+                  name="facebook"
+                  type="url"
+                  placeholder="https://www.facebook.com/…" /></label
+              ><label
+                >Instagram<input
+                  name="instagram"
+                  type="url"
+                  placeholder="https://www.instagram.com/…" /></label
+              ><label
+                >LinkedIn<input
+                  name="linkedin"
+                  type="url"
+                  placeholder="https://www.linkedin.com/…" /></label
+              ><label
+                >TikTok<input
+                  name="tiktok"
+                  type="url"
+                  placeholder="https://www.tiktok.com/@…" /></label
+              ><label
+                >YouTube<input
+                  name="youtube"
+                  type="url"
+                  value="https://www.youtube.com/channel/UCV-Jtu_zpf4S87n9GyTrcDw" /></label
+              ><label
+                >X<input name="x" type="url" placeholder="https://x.com/…"
+              /></label>
+            </div>
+            <button class="button button-gold" type="submit">
+              Enregistrer
+            </button>
+            <p class="admin-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="admin-panel" id="panel-integrations">
+          <p class="eyebrow">CONFIGURATION SERVEUR</p>
+          <h2>Connexions API</h2>
+          <div class="admin-notice">
+            <strong>Ne saisissez aucun secret ici.</strong>
+            <p>
+              Configurez les secrets dans les variables d’environnement Vercel :
+              <code>SUPABASE_URL</code>, <code>SUPABASE_PUBLISHABLE_KEY</code>,
+              <code>SUPABASE_SECRET_KEY</code>,
+              <code>ADMIN_SESSION_SECRET</code>,
+              <code>MONETBIL_SERVICE_KEY</code>,
+              <code>MONETBIL_SECRET_KEY</code>,
+              <code>MONETBIL_NOTIFY_URL</code>, <code>TELEGRAM_BOT_TOKEN</code>,
+              <code>TELEGRAM_CHAT_ID</code>,
+              <code>GOOGLE_APPS_SCRIPT_URL</code>,
+              <code>GOOGLE_APPS_SCRIPT_TOKEN</code>,
+              <code>YOUTUBE_API_KEY</code> et <code>YOUTUBE_CHANNEL_ID</code>.
+            </p>
+          </div>
+          <p class="admin-intro">
+            Monetbil : paiement et callback signé. Google Apps Script : envoi du
+            PDF après paiement confirmé. Telegram : demandes et notifications.
+            YouTube : lecture serveur, clé jamais transmise au navigateur.
+          </p>
+          <p class="admin-intro">
+            Le programme Visual Basic .exe est distinct du site Vercel; il ne
+            doit pas intégrer de clé serveur et devra utiliser les mêmes API
+            protégées.
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="../JS/admin.js" defer></script>
+  </body>
+</html>

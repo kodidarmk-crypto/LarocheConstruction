@@ -1,6 +1,48 @@
+# Environment & Secrets
 .env
 .env.*
 !.env.example
-.venv/
-supabase/.temp/
+
+# Logs
+debug.log
 *.log
+
+# Files intentionally kept outside version control
+/OUT of repo/
+
+# Markdown files
+*.md
+!README.md
+!CLAUDE.md
+!admin-desktop/
+admin-desktop/obj/
+admin-desktop/bin/
+admin-desktop/publish/
+!admin-desktop/**/*.md
+
+# PDF files
+*.pdf
+
+# Package locks & dependencies
+package-lock.json
+!package-lock.json
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Text files
+*.txt
+
+# Virtual Environments & IDE
+.venv/
+.vscode/
+.qodo/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Keep the approved product documents under version control
+!docs/
+!docs/*.md
+!docs/**/*.md
